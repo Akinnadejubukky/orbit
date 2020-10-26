@@ -3,7 +3,6 @@ import * as React from "react";
 import { shallow } from "enzyme";
 
 import Tag from "../index";
-import Bus from "../../icons/Bus";
 
 describe("Tag", () => {
   const content = "Brno";
@@ -11,10 +10,9 @@ describe("Tag", () => {
   const onRemove = jest.fn();
   const onClick = jest.fn();
   const selected = true;
-  const icon = <Bus />;
 
   const component = shallow(
-    <Tag selected={selected} icon={icon} dataTest={dataTest} onRemove={onRemove} onClick={onClick}>
+    <Tag selected={selected} dataTest={dataTest} onRemove={onRemove} onClick={onClick}>
       {content}
     </Tag>,
   );
@@ -35,8 +33,5 @@ describe("Tag", () => {
   });
   it("should contain a content", () => {
     expect(component.render().text()).toBe(content);
-  });
-  it("should contain a icon", () => {
-    expect(component.find("Bus").exists()).toBe(true);
   });
 });
