@@ -1,4 +1,4 @@
-type Dimensions = {
+export type Dimensions = {
   top: number;
   right: number;
   bottom: number;

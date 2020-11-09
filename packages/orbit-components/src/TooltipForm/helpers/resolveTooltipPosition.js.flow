@@ -1,0 +1,15 @@
+// @flow
+import type { Interpolation } from "styled-components";
+
+import type { Theme } from "../../defaultTheme";
+import type { Dimensions as PositionRaw } from "../../utils/boundingClientRect";
+
+export type ResolveTooltipPosition = ({|
+  theme: Theme,
+  position: string,
+  inlineLabel: boolean,
+  iconBounding: PositionRaw,
+  bounding: PositionRaw,
+|}) => Interpolation[];
+
+declare export default ResolveTooltipPosition;

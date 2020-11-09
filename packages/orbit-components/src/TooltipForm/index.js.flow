@@ -1,0 +1,24 @@
+// @flow
+import * as React from "react";
+
+import type { Globals, RefType } from "../common/common.js.flow";
+import type { Aligns, Positions } from "../primitives/TooltipPrimitive";
+import type { Dimensions as PositionRaw } from "../utils/boundingClientRect";
+
+export type Props = {|
+  +tooltipShown: boolean,
+  +error?: React.Node,
+  +help?: React.Node,
+  +prefferedPosition?: Positions,
+  +prefferedAlign?: Aligns,
+  +iconRef?: RefType,
+  +inlineLabel?: boolean,
+  ...Globals,
+|};
+
+export type Dimensions = {|
+  set: boolean,
+  iconBounding: ?PositionRaw,
+|};
+
+declare export default React.ComponentType<Props>;

@@ -4,12 +4,9 @@ import * as React from "react";
 import type { Dimensions } from "../index";
 
 export type UseDimensions = (
-  {
-    boundingRef: ?React.ElementRef<*>,
-    contentRef: ?React.ElementRef<*>,
+  {|
     iconBoundingRef: ?React.ElementRef<*>,
-  },
-  children: React.Node,
+  |},
   inlineLabel: ?boolean,
 ) => Dimensions;
 

@@ -31,6 +31,7 @@ async function eslintCI() {
   // https://github.com/lots0logs/gh-action-get-changed-files
   const allChangedFiles = JSON.parse(await fsx.readFile(`${process.env.HOME}/files.json`));
   const deletedFiles = JSON.parse(await fsx.readFile(`${process.env.HOME}/files_deleted.json`));
+  console.log(deletedFiles);
   const candidateFiles = allChangedFiles
     .filter(fileName => !deletedFiles.includes(fileName))
     .filter(isCandidateForLinting);
