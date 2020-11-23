@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import { shallow } from "enzyme";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Tag from "../index";
 
@@ -11,27 +12,31 @@ describe("Tag", () => {
   const onClick = jest.fn();
   const selected = true;
 
-  const component = shallow(
-    <Tag selected={selected} dataTest={dataTest} onRemove={onRemove} onClick={onClick}>
-      {content}
-    </Tag>,
-  );
+  it("it should have data-test", () => {
+    render(
+      <Tag selected={selected} dataTest={dataTest} onRemove={onRemove} onClick={onClick}>
+        {content}
+      </Tag>,
+    );
 
-  it("the onRemove should be called", () => {
-    const CloseContainer = component.find("Tag__CloseContainer");
-    CloseContainer.simulate("click", { stopPropagation() {} });
-    expect(onRemove).toHaveBeenCalled();
+    expect(screen.getByTestId(dataTest)).toBeInTheDocument();
   });
 
-  it("the onClick should be called", () => {
-    component.simulate("click");
+  it("should fire onClick", () => {
+    render(<Tag onClick={onClick}>{content}</Tag>);
+    const tag = screen.getByRole("button");
+    userEvent.click(tag);
     expect(onClick).toHaveBeenCalled();
   });
 
-  it("should have passed props", () => {
-    expect(component.render().prop("data-test")).toBe(dataTest);
+  it("should fire onRemove", () => {
+    render(<Tag onRemove={onRemove}>{content}</Tag>);
+    userEvent.click(screen.getByRole("button", { name: "" }));
+    expect(onRemove).toHaveBeenCalled();
   });
+
   it("should contain a content", () => {
-    expect(component.render().text()).toBe(content);
+    render(<Tag>{content}</Tag>);
+    expect(screen.getByText(content)).toBeInTheDocument();
   });
 });

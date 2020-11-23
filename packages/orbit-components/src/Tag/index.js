@@ -149,6 +149,7 @@ const StyledClose = styled.div`
         selected && !removable ? theme.orbit.paletteBlueDarker : theme.orbit.paletteWhite};
   }
 `;
+
 StyledClose.defaultProps = {
   theme: defaultTheme,
 };
